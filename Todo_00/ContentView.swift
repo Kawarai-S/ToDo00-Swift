@@ -17,18 +17,14 @@ struct ContentView: View {
         NavigationStack{
             List(0..<taskData.count, id: \.self){ index in
                 Button {
-                    taskData[index].completed = !taskData[index].completed
+                    taskData[index].completed.toggle()
                 } label: {
                     HStack{
-                        if taskData[index].completed == true{
-                            Image(systemName:"checkmark.circle.fill")
-                        }else{
-                            Image(systemName: "circle")
-                        }
+                        Image(systemName: taskData[index].completed == true ? "checkmark.circle.fill" : "circle")
                         Text(taskData[index].title)
                     }
                 }
-                .foregroundColor(.black)
+                .foregroundColor(.primary) //ナイトモード対応
             }
             .navigationTitle("ToDoリスト")
         }
